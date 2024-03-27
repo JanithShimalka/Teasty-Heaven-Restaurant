@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -15,6 +16,9 @@ Route::get('/reservation', [HomeController::class,'reservation'] );
 Route::get('/team', [HomeController::class,'team'] );
 Route::get('/testimonial', [HomeController::class,'testimonial'] );
 Route::get('/contact', [HomeController::class,'contact'] );
+
+Route::get('/empMng', [AdminController::class,'empMng'] );
+Route::post('/saveEmp', [AdminController::class,'empSave'] );
 
 Route::middleware([
     'auth:sanctum',
