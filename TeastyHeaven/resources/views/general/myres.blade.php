@@ -131,7 +131,7 @@
                                                         ><i class="fa fa-edit"></i>
                                                     </button>
 
-                                                    <a type="button" href="{{ url('delres', $reservation->id) }}" onclick="return(confirm('Aer You Sure To Delete This ?'))"
+                                                    <a type="button" href="{{ url('delres', $reservation->id) }}" onclick="return(confirm('Are You Sure To Delete This ?'))"
                                                         class="btn btn-sm btn-danger  waves-effect waves-light">
                                                         <i class="fa fa-trash"></i>
                                                     </a>

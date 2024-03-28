@@ -78,5 +78,11 @@ class AdminController extends Controller
         return redirect()->back();
 
     }
+    public function delemp($id){
+        $data = Employee::find($id);
+        $data ->delete();
+
+        return redirect()->back()-> with('message','Employee Successfully Deleted.');
+    }
 
 }

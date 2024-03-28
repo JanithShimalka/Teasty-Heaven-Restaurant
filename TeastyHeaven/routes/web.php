@@ -21,6 +21,7 @@ Route::get('/contact', [HomeController::class,'contact'] );
 Route::get('/delres/{id}', [HomeController::class,'delres'] );
 Route::get('/appoved/{id}', [AdminController::class,'appoved'] );
 Route::get('/canceled/{id}', [AdminController::class,'canceled'] );
+Route::get('/delemp/{id}', [AdminController::class,'delemp'] );
 
 Route::get('/empMng', [AdminController::class,'empMng'] );
 Route::get('/tblres', [AdminController::class,'tblres'] );

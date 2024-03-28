@@ -73,6 +73,14 @@
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
+
+                @if (session()->has('message'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session()->get('message') }}
+
+                    </div>
+                @endif
+
                 <div class="row">
 
                     <div class="col-lg-10">
@@ -122,17 +130,15 @@
                                                     <p>
 
                                                         <button type="button"
-                                                            class="btn btn-sm btn-warning  waves-effect waves-light"
-                                                            data-toggle="modal" id="uCategoryID"
-                                                            data-target="#updateCategoryModal"><i
+                                                            class="btn btn-sm btn-warning  waves-effect waves-light"><i
                                                                 class="fa fa-edit"></i>
                                                         </button>
 
-                                                        <button type="button"
+                                                        <a type="button" href="{{ url('delemp', $employee->id) }}"
                                                             class="btn btn-sm btn-danger  waves-effect waves-light"
-                                                            onclick="deleteEmp({{ $employee->id }})">
+                                                            onclick="return(confirm('Are You Sure To Delete This ?'))">
                                                             <i class="fa fa-trash"></i>
-                                                        </button>
+                                                        </a>
 
                                                     </p>
 

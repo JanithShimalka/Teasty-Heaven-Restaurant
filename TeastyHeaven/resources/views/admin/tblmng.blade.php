@@ -127,7 +127,7 @@
                                                         <a type="button" title="Cancel"
                                                             href ="{{ url('canceled', $resevation->id) }}"
                                                             class="btn btn-sm btn-danger  waves-effect waves-light"
-                                                            onclick="">
+                                                            onclick="return(confirm('Are You Sure To Cancel This ?'))">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
 
