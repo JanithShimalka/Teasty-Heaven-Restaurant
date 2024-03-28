@@ -63,6 +63,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
                                 <a href="{{url('reservation')}}" class="dropdown-item">Booking</a>
+                                <a href="{{url('myres')}}" class="dropdown-item">My Reservations</a>
                                 <a href="{{url('team')}}" class="dropdown-item">Our Team</a>
                                 <a href="{{url('testimonial')}}" class="dropdown-item">Testimonial</a>
                             </div>
@@ -84,6 +85,7 @@
                     @endif
                 </div>
             </nav>
+            
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container my-5 py-5">

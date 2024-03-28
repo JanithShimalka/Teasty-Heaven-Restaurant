@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 use App\Models\Employee;
+use App\Models\reservation;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function empMng(){
-        return view('admin.empMng');
+
+        $employees = Employee::get();
+
+        return view('admin.empMng',['employees' => $employees]);
     }
     public function empSave(Request $request){
 
@@ -53,4 +57,26 @@ class AdminController extends Controller
     return response()->json(['success'=>'Employee Saved']);
     
     }
+    public function tblres(){
+        $res = reservation::all();
+
+        return view('admin.tblmng',['res' => $res]);
+
+    }
+    public function appoved($id){
+        $data = reservation::find($id);
+        $data->status = 'Apprroved';
+        $data-> save();
+        return redirect()->back();
+
+    }
+
+    public function canceled($id){
+        $data = reservation::find($id);
+        $data->status = 'Canceled';
+        $data-> save();
+        return redirect()->back();
+
+    }
+
 }

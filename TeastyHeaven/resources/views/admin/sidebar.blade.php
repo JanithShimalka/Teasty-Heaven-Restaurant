@@ -17,5 +17,14 @@
               <span class="menu-title">Employee Management</span>
             </a>
           </li>
+
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('tblres')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-file-document-box"></i>
+              </span>
+              <span class="menu-title">Table Management</span>
+            </a>
+          </li>
         </ul>
       </nav>

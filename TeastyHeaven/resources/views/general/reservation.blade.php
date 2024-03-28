@@ -11,10 +11,13 @@
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -35,61 +38,71 @@
 
 <body>
 
-@include('general.nav')
-<div class="container-xxl py-5 bg-dark hero-header mb-5">
-    <div class="container text-center my-5 pt-5 pb-4">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">Booking</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-center text-uppercase">
-                <li class="breadcrumb-item"><a href="{{url('home')}}">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
-            </ol>
-        </nav>
+    @include('general.nav')
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="container text-center my-5 pt-5 pb-4">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Booking</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
+                </ol>
+            </nav>
+        </div>
     </div>
-</div>
 
-@if(Route::has('login'))
-    @auth
-    <!-- About Start -->
-    @include('user.reservation')
-    <!-- About End --> 
-    @else
-    <center> <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <a href="{{route('login')}}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Login Before Book A Table</a>
-    </center>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    @endauth
+    @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session()->get('message') }}
+            
+        </div>
     @endif
 
 
- <!-- Footer Start -->
- @include('user.footer')
- <!-- Footer End -->
+    @if (Route::has('login'))
+        @auth
+            <!-- About Start -->
+            @include('user.reservation')
+            <!-- About End -->
+        @else
+            <center> <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <a href="{{ route('login') }}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Login
+                    Before Book A Table</a>
+            </center>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        @endauth
+    @endif
 
 
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="lib/wow/wow.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/counterup/counterup.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="lib/tempusdominus/js/moment.min.js"></script>
-<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Footer Start -->
+    @include('user.footer')
+    <!-- Footer End -->
 
-<!-- Template Javascript -->
-<script src="js/main.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
 </body>
+
 </html>

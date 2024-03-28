@@ -107,23 +107,42 @@
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>Janith</td>
-                                    <td>Admin</td>
-                                    <td>Male</td>
-                                    <td>10</td>
-                                    <td>0767863772</td>
-                                    <td>Opt</td>
-                                </tr>
-                                <tr>
-                                    <td>Aloka</td>
-                                    <td>Admin</td>
-                                    <td>Female</td>
-                                    <td>10</td>
-                                    <td>0767863772</td>
-                                    <td>Opt</td>
-                                </tr>
+                                @if (isset($employees))
+                                    @if (count($employees) > 0)
+                                        @foreach ($employees as $employee)
+                                            <tr>
+                                                <td>{{ $employee->name }}</td>
+                                                <td>{{ $employee->role }}</td>
+                                                <td>{{ $employee->gender }}</td>
+                                                <td>{{ $employee->hrs }}</td>
+                                                <td>{{ $employee->phone }}</td>
 
+                                                <td>
+
+                                                    <p>
+
+                                                        <button type="button"
+                                                            class="btn btn-sm btn-warning  waves-effect waves-light"
+                                                            data-toggle="modal" id="uCategoryID"
+                                                            data-target="#updateCategoryModal"><i
+                                                                class="fa fa-edit"></i>
+                                                        </button>
+
+                                                        <button type="button"
+                                                            class="btn btn-sm btn-danger  waves-effect waves-light"
+                                                            onclick="deleteEmp({{ $employee->id }})">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+
+                                                    </p>
+
+                                                </td>
+
+
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                @endif
 
                             </tbody>
 
@@ -163,8 +182,11 @@
                             <div class="form-group">
                                 <label>Role <span style="color:red">*</span> </label><br>
                                 <select name="role" id="role" style="background-color: rgb(37, 37, 37)">
-                                    <option value="receptionist">Receptionist</option>
+                                    <option value="cashier">Cashier</option>
                                     <option value="chef">Chef</option>
+                                    <option value="waiter">Waiter</option>
+                                    <option value="manager">Manager</option>
+                                    <option value="delivery">Delivery</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -256,7 +278,7 @@
 
                     if (data.success !=
                         null
-                    ) { 
+                    ) {
                         $('input').val('');
                         location.reload();
                         //if there is a value in the key of success which is returned from controller //if there is no errors

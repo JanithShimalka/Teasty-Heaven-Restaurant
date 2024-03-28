@@ -13,12 +13,19 @@ Route::get('/about', [HomeController::class,'about'] );
 Route::get('/services', [HomeController::class,'services'] );
 Route::get('/menu', [HomeController::class,'menu'] );
 Route::get('/reservation', [HomeController::class,'reservation'] );
+Route::get('/myres', [HomeController::class,'myres'] );
 Route::get('/team', [HomeController::class,'team'] );
 Route::get('/testimonial', [HomeController::class,'testimonial'] );
 Route::get('/contact', [HomeController::class,'contact'] );
 
+Route::get('/delres/{id}', [HomeController::class,'delres'] );
+Route::get('/appoved/{id}', [AdminController::class,'appoved'] );
+Route::get('/canceled/{id}', [AdminController::class,'canceled'] );
+
 Route::get('/empMng', [AdminController::class,'empMng'] );
+Route::get('/tblres', [AdminController::class,'tblres'] );
 Route::post('/saveEmp', [AdminController::class,'empSave'] );
+Route::post('/table', [HomeController::class,'booktable'] );
 
 Route::middleware([
     'auth:sanctum',
