@@ -18,6 +18,7 @@ Route::get('/team', [HomeController::class,'team'] );
 Route::get('/testimonial', [HomeController::class,'testimonial'] );
 Route::get('/contact', [HomeController::class,'contact'] );
 
+
 Route::get('/delres/{id}', [HomeController::class,'delres'] );
 Route::get('/appoved/{id}', [AdminController::class,'appoved'] );
 Route::get('/canceled/{id}', [AdminController::class,'canceled'] );
@@ -39,6 +40,7 @@ Route::post('/table', [HomeController::class,'booktable'] );
 Route::post('/uploadMenu', [AdminController::class,'uploadMenu'] );
 Route::post('/uploadSup', [AdminController::class,'uploadSup'] );
 Route::post('/uploadinv', [AdminController::class,'uploadinv'] );
+Route::post('/review', [HomeController::class,'review'] );
 
 Route::middleware([
     'auth:sanctum',

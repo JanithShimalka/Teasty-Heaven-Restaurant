@@ -140,6 +140,13 @@
         <!-- Testimonial Start -->
         @include('user.testimonial')
         <!-- Testimonial End -->
+        @if(Route::has('login'))
+        @auth
+         <!-- Testimonial Start -->
+         @include('user.addreview')
+         <!-- Testimonial End -->
+         @endauth
+        @endif
         
 
         <!-- Footer Start -->

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Menu;
+use App\Models\Review;
 use App\Models\reservation;
 
 class HomeController extends Controller
@@ -14,17 +15,18 @@ class HomeController extends Controller
         $breakfast = Menu::where('type','breakfast')->get();
         $lanch = Menu::where('type','lanch')->get();
         $dinner = Menu::where('type','dinner')->get();
+        $rev = Review::all();
 
         if(Auth::id()){
             if(Auth::user()->usertype == '1'){
                 return view('admin.home');
             }
             else{
-                return view('user.home',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner]);
+                return view('user.home',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner, 'rev'=>$rev]);
             }
 
         }else{
-            return view('user.home',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner]);;
+            return view('user.home',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner, 'rev'=>$rev]);
         }
     }
 
@@ -32,13 +34,26 @@ class HomeController extends Controller
         $breakfast = Menu::where('type','breakfast')->get();
         $lanch = Menu::where('type','lanch')->get();
         $dinner = Menu::where('type','dinner')->get();
+        $rev = Review::all();
 
-        return view('user.home',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner]);
+        return view('user.home',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner, 'rev'=>$rev]);
     }
 
     public function about(){
         return view('general.about');
     }
+
+    public function review(Request $request){
+        $data = new Review;
+        $data -> name = $request -> name;
+        $data -> email = $request -> email; 
+        $data -> message = $request -> message;
+        $data -> user_id = Auth::user()->id;
+
+        $data->save();
+        return redirect()->back();
+    }
+
     public function services(){
         return view('general.services');
     }
@@ -56,7 +71,8 @@ class HomeController extends Controller
         return view('general.team');
     }
     public function testimonial(){
-        return view('general.testimonial');
+        $rev = Review::all();
+        return view('general.testimonial',['rev'=>$rev]);
     }
     public function contact(){
         return view('general.contact');
