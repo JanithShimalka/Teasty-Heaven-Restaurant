@@ -5,27 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Menu;
 use App\Models\reservation;
 
 class HomeController extends Controller
 {
     public function redirecta(){
+        $breakfast = Menu::where('type','breakfast')->get();
+        $lanch = Menu::where('type','lanch')->get();
+        $dinner = Menu::where('type','dinner')->get();
+
         if(Auth::id()){
             if(Auth::user()->usertype == '1'){
                 return view('admin.home');
             }
             else{
-                return view('user.home');
+                return view('user.home',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner]);
             }
 
         }else{
-            return view('user.home');;
+            return view('user.home',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner]);;
         }
     }
 
     public function index(){
+        $breakfast = Menu::where('type','breakfast')->get();
+        $lanch = Menu::where('type','lanch')->get();
+        $dinner = Menu::where('type','dinner')->get();
 
-        return view('user.home');
+        return view('user.home',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner]);
     }
 
     public function about(){
@@ -35,7 +43,11 @@ class HomeController extends Controller
         return view('general.services');
     }
     public function menu(){
-        return view('general.menu');
+        $breakfast = Menu::where('type','breakfast')->get();
+        $lanch = Menu::where('type','lanch')->get();
+        $dinner = Menu::where('type','dinner')->get();
+
+        return view('general.menu',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner]);
     }
     public function reservation(){
         return view('general.reservation');

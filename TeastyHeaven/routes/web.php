@@ -22,11 +22,15 @@ Route::get('/delres/{id}', [HomeController::class,'delres'] );
 Route::get('/appoved/{id}', [AdminController::class,'appoved'] );
 Route::get('/canceled/{id}', [AdminController::class,'canceled'] );
 Route::get('/delemp/{id}', [AdminController::class,'delemp'] );
+Route::get('/dltmenu/{id}', [AdminController::class,'dltmenu'] );
 
 Route::get('/empMng', [AdminController::class,'empMng'] );
 Route::get('/tblres', [AdminController::class,'tblres'] );
+Route::get('/mnumng', [AdminController::class,'mnumng'] );
+Route::get('/addmenu', [AdminController::class,'addmenu'] );
 Route::post('/saveEmp', [AdminController::class,'empSave'] );
 Route::post('/table', [HomeController::class,'booktable'] );
+Route::post('/uploadMenu', [AdminController::class,'uploadMenu'] );
 
 Route::middleware([
     'auth:sanctum',

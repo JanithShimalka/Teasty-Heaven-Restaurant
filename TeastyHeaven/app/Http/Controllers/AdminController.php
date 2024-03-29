@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Employee;
+use App\Models\Menu;
 use App\Models\reservation;
 use Illuminate\Http\Request;
 
@@ -63,6 +64,19 @@ class AdminController extends Controller
         return view('admin.tblmng',['res' => $res]);
 
     }
+    public function mnumng(){
+        $menu = Menu::all();
+
+        return view('admin.mnumng',['menu' => $menu]);
+
+    }
+
+    public function addmenu(){
+        
+
+        return view('admin.addmenu');
+
+    }
     public function appoved($id){
         $data = reservation::find($id);
         $data->status = 'Apprroved';
@@ -83,6 +97,42 @@ class AdminController extends Controller
         $data ->delete();
 
         return redirect()->back()-> with('message','Employee Successfully Deleted.');
+    }
+
+    public function dltmenu($id){
+        $data = Menu::find($id);
+        $data ->delete();
+
+        return redirect()->back()-> with('message','Menu Item Successfully Deleted.');
+    }
+
+    public function uploadMenu(Request $request){
+
+        $image = $request -> file;
+        $imageName = time().'.'. $image->getClientoriginalExtension();
+        $request -> file -> move('itemimage',$imageName);
+
+        $name = $request['itmname'];
+        $desc = $request['desc'];
+        $type = $request['type'];
+        $price = $request['price'];
+        $cost = $request['cost'];
+
+
+        $save=new Menu();
+
+        $save->name = $name;
+        $save->desc = $desc;
+        $save->type = $type;
+        $save->price = $price;
+        $save->cost = $cost;
+        $save->image =$imageName;
+
+        $save->save();
+
+        $menu = Menu::all();
+
+        return view('admin.mnumng',['menu' => $menu]);
     }
 
 }

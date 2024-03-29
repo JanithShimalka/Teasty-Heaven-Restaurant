@@ -26,5 +26,14 @@
               <span class="menu-title">Table Management</span>
             </a>
           </li>
+
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('mnumng')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-file-document-box"></i>
+              </span>
+              <span class="menu-title">Menu Management</span>
+            </a>
+          </li>
         </ul>
       </nav>
