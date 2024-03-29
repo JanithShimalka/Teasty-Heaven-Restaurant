@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Menu;
+use App\Models\Inventory;
+use App\Models\Supplier;
 use App\Models\reservation;
 use Illuminate\Http\Request;
 
@@ -70,6 +72,12 @@ class AdminController extends Controller
         return view('admin.mnumng',['menu' => $menu]);
 
     }
+    public function additm(){
+        $sup = Supplier::all();
+
+        return view('admin.addinvitm',['supplier' => $sup]);
+
+    }
 
     public function addmenu(){
         
@@ -77,6 +85,25 @@ class AdminController extends Controller
         return view('admin.addmenu');
 
     }
+    public function invmng(){
+        
+        $inv = Inventory::all();
+        return view('admin.invmng',['inv' => $inv]);
+
+    }
+    public function addsup(){
+        
+
+        return view('admin.addsup');
+
+    }
+    public function supmng(){
+        $sup = Supplier::all();
+
+        return view('admin.supmng',['supplier' => $sup]);
+
+    }
+
     public function appoved($id){
         $data = reservation::find($id);
         $data->status = 'Apprroved';
@@ -106,6 +133,19 @@ class AdminController extends Controller
         return redirect()->back()-> with('message','Menu Item Successfully Deleted.');
     }
 
+    public function dltsup($id){
+        $data = Supplier::find($id);
+        $data ->delete();
+
+        return redirect()->back()-> with('message','Supplier Successfully Deleted.');
+    }
+    public function dltinv($id){
+        $data = Inventory::find($id);
+        $data ->delete();
+
+        return redirect()->back()-> with('message','Item Successfully Deleted.');
+    }
+
     public function uploadMenu(Request $request){
 
         $image = $request -> file;
@@ -132,7 +172,57 @@ class AdminController extends Controller
 
         $menu = Menu::all();
 
-        return view('admin.mnumng',['menu' => $menu]);
+        return redirect()->back();
     }
+
+    public function uploadSup(Request $request){
+
+        
+        $name = $request['supname'];
+        $desc = $request['desc'];
+        $phone = $request['phone'];
+        $email = $request['email'];
+        $address = $request['address'];
+       
+        $save=new Supplier();
+
+        $save->name = $name;
+        $save->desc = $desc;
+        $save->phone = $phone;
+        $save->email = $email;
+        $save->address = $address;
+        
+        $save->save();
+
+        $sup = Supplier::all();
+
+        return redirect()->back();
+    }
+
+    public function uploadinv(Request $request){
+
+        $date = $request['date'];
+        $itmname = $request['itmname'];
+        $qty = $request['qty'];
+        $price = $request['price'];
+        $supplier = $request['supplier'];
+        $exp = $request['exp'];
+       
+        $save=new Inventory();
+
+        $save->date = $date;
+        $save->item_name = $itmname;
+        $save->qty = $qty;
+        $save->price = $price;
+        $save->supplier = $supplier;
+        $save->exp_date = $exp;
+        
+        $save->save();
+
+
+        return redirect()->back();
+    }
+
+    
 
 }
