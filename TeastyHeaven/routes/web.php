@@ -35,6 +35,7 @@ Route::get('/supmng', [AdminController::class,'supmng'] );
 Route::get('/addsup', [AdminController::class,'addsup'] );
 Route::get('/invmng', [AdminController::class,'invmng'] );
 Route::get('/additm', [AdminController::class,'additm'] );
+Route::get('/invoice', [AdminController::class,'invoice'] );
 Route::post('/saveEmp', [AdminController::class,'empSave'] );
 Route::post('/table', [HomeController::class,'booktable'] );
 Route::post('/uploadMenu', [AdminController::class,'uploadMenu'] );

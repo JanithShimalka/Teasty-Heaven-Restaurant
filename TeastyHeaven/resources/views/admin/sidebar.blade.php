@@ -10,6 +10,15 @@
           </li>
           
           <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('invoice')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-file-document-box"></i>
+              </span>
+              <span class="menu-title"> Invoices </span>
+            </a>
+          </li>
+
+          <li class="nav-item menu-items">
             <a class="nav-link" href="{{url('empMng')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-file-document-box"></i>

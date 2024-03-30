@@ -85,6 +85,13 @@ class AdminController extends Controller
         return view('admin.addmenu');
 
     }
+    public function invoice(){
+        
+
+        return view('admin.invoiceview');
+
+    }
+    
     public function invmng(){
         
         $inv = Inventory::all();
