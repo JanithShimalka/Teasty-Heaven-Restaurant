@@ -21,7 +21,9 @@ class HomeController extends Controller
 
         if(Auth::id()){
             if(Auth::user()->usertype == '1'){
-                return view('admin.home');
+                $odrs = Order::all();
+
+                return view('admin.home',['odrs' => $odrs]);
             }
             else{
                 return view('user.home',['breakfast' => $breakfast, 'lanch' => $lanch, 'dinner'=> $dinner, 'rev'=>$rev]);
