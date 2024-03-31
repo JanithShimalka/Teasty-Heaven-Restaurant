@@ -164,8 +164,8 @@ class HomeController extends Controller
             $order -> name =$d->name;
             $order -> phone =$d->phone;
             $order -> address =$d->address;
-            $order -> product =$d->name;
-            $order -> unit_price =$d->price;
+            $order -> product =$d->product;
+            $order -> unit_price =$d->unit_price;
             $order -> qty =$d->qty;
             $order -> price =$d->price;
             $order -> product_id =$d->product_id;
@@ -196,8 +196,8 @@ class HomeController extends Controller
             $order -> name =$d->name;
             $order -> phone =$d->phone;
             $order -> address =$d->address;
-            $order -> product =$d->name;
-            $order -> unit_price =$d->price;
+            $order -> product =$d->product;
+            $order -> unit_price =$d->unit_price;
             $order -> qty =$d->qty;
             $order -> price =$d->price;
             $order -> product_id =$d->product_id;

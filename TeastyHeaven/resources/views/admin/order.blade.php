@@ -108,7 +108,7 @@
                                 @if (isset($odrs))
                                     @if (count($odrs) > 0)
                                         @foreach ($odrs as $odrs)
-                                            @if($odrs->status != 'Proceed by Admin'){
+                                            @if($odrs->status != 'Proceed by Admin')
                                             <tr>
                                                 <td>{{ $odrs->name }}</td>
                                                 <td>{{ $odrs->phone }}</td>
@@ -142,7 +142,7 @@
 
 
                                             </tr>
-                                        }
+                                        
                                         @endif
                                         @endforeach
                                     @endif
