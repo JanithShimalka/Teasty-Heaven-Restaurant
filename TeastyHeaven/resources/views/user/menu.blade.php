@@ -52,6 +52,15 @@
                                                     <span class="text-primary">{{ $bf->price }}</span>
                                                 </h5>
                                                 <small class="fst-italic">{{ $bf->desc }}</small>
+                                                <form action="{{url('addcart',$bf->id)}}" method="POST">
+                                                    @csrf
+                                                    <div class="d-flex flex-row-reverse">
+                                                        
+                                                        <input class="btn btn-primary " type="submit" value="Add To Cart" style="background-color: #FEA116">&nbsp;
+                                                        <input class="" type="number" name="qty" id="qty" min="1" placeholder="Qty" style="width: 70px; height: 37px; outline-color:rgb(248, 173, 12)" required>
+
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -77,6 +86,16 @@
                                                     <span class="text-primary">{{ $ln->price }}</span>
                                                 </h5>
                                                 <small class="fst-italic">{{ $ln->desc }}</small>
+                                                <form action="{{url('addcart',$bf->id)}}" method="POST">
+                                                    @csrf
+                                                    <div class="d-flex flex-row-reverse">
+                                                        
+                                                        <input class="btn btn-primary " type="submit" value="Add To Cart" style="background-color: #FEA116">&nbsp;
+                                                        <input class="" type="number" name="qty" id="qty" min="1" placeholder="Qty" style="width: 70px; height: 37px; outline-color:rgb(248, 173, 12)" required>
+
+                                                    </div>
+                                                </form>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -102,6 +121,15 @@
                                                     <span class="text-primary">{{ $dn->price }}</span>
                                                 </h5>
                                                 <small class="fst-italic">{{ $dn->desc }}</small>
+                                                <form action="{{url('addcart',$bf->id)}}" method="POST">
+                                                    @csrf
+                                                    <div class="d-flex flex-row-reverse">
+                                                        
+                                                        <input class="btn btn-primary " type="submit" value="Add To Cart" style="background-color: #FEA116">&nbsp;
+                                                        <input class="" type="number" name="qty" id="qty" min="1" placeholder="Qty" style="width: 70px; height: 37px; outline-color:rgb(248, 173, 12)" required>
+
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

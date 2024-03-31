@@ -71,70 +71,6 @@
         <!-- partial -->
         @include('admin.navbar')
         <!-- partial -->
-        <div class="main-panel">
-            <div class="content-wrapper">
-
-                <div class="table-rep-plugin">
-                    <div class="table-responsive b-0" data-pattern="priority-columns">
-
-
-                        <table id="datatable" class="table table-striped table-dark" cellspacing="0" width="100%"
-                            style="color: white">
-
-                            <thead>
-                                <tr>
-                                    <th style="color: white">Name</th>
-                                    <th style="color: white">Description</th>
-                                    <th style="color: white">Type</th>
-                                    <th style="color: white">Price</th>
-                                    <th style="color: white">Options</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @if (isset($menu))
-                                    @if (count($menu) > 0)
-                                        @foreach ($menu as $menu)
-                                            <tr>
-                                                <td>{{ $menu->name }}</td>
-                                                <td>{{ $menu->desc }}</td>
-                                                <td>{{ $menu->type }}</td>
-                                                <td>{{ $menu->price }}</td>
-
-                                                <td>
-
-                                                    <p>
-
-                                                        
-
-                                                        <a type="button" href="{{ url('addcart', $menu->id) }}"
-                                                            
-                                                            class="btn btn-sm btn-success  waves-effect waves-light">
-                                                            <i class="fa fa-plus"></i>
-                                                        </a>
-
-                                                    </p>
-
-                                                </td>
-
-
-                                            </tr>
-                                            
-                                        @endforeach
-                                    @endif
-                                @endif
-
-                            </tbody>
-
-                        </table>
-                        <br><br>
-                        
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
 
         <div class="main-panel">
@@ -147,10 +83,6 @@
                     </div>
                 @endif
 
-                <?php
-                $total = 0;
-                ?>
-
                 <div class="table-rep-plugin">
                     <div class="table-responsive b-0" data-pattern="priority-columns">
 
@@ -160,36 +92,47 @@
 
                             <thead>
                                 <tr>
-                                    <th style="color: white">Product</th>
-                                    <th style="color: white">Unit Price</th>
-                                    <th style="color: white">Qty</th>
-                                    <th style="color: white">Price</th>
-                                    <th style="color: white">Options</th>
+                                    <th style="color: white">CUSTOMER NAME</th>
+                                    <th style="color: white">PHONE</th>
+                                    <th style="color: white">ADDRESS</th>
+                                    <th style="color: white">PRODUCT</th>
+                                    <th style="color: white">UNIT PRICE</th>
+                                    <th style="color: white">QTY</th>
+                                    <th style="color: white">PRICE</th>
+                                    <th style="color: white">STATUS</th>
+                                    <th style="color: white">OPTIONS</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                @if (isset($crt))
-                                    @if (count($crt) > 0)
-                                        @foreach ($crt as $cart)
+                                @if (isset($odrs))
+                                    @if (count($odrs) > 0)
+                                        @foreach ($odrs as $odrs)
+                                            @if($odrs->status != 'Proceed by Admin'){
                                             <tr>
-                                                <td>{{ $cart->product }}</td>
-                                                <td>{{ $cart->unit_price }}</td>
-                                                <td>1</td>
-                                                <td>{{ $cart->unit_price }}</td>
+                                                <td>{{ $odrs->name }}</td>
+                                                <td>{{ $odrs->phone }}</td>
+                                                <td>{{ $odrs->address }}</td>
+                                                <td>{{ $odrs->product }}</td>
+                                                <td>{{ $odrs->unit_price }}</td>
+                                                <td>{{ $odrs->qty }}</td>
+                                                <td>{{ $odrs->price }}</td>
+                                                <td>{{ $odrs->status }}</td>
 
                                                 <td>
 
                                                     <p>
 
-                                                        <button type="button"
-                                                            class="btn btn-sm btn-warning  waves-effect waves-light"><i
-                                                                class="fa fa-edit"></i>
-                                                        </button>
+                                                        <a type="button" title="Approve"
+                                                            href ="{{ url('odrappove', $odrs->id) }}"
+                                                            class="btn btn-sm btn-success  waves-effect waves-light"><i
+                                                                class="fa fad fa-thumbs-up"></i>
+                                                        </a>
 
-                                                        <a type="button" href="{{ url('delcrt', $cart->id) }}"
-                                                            onclick="return(confirm('Are You Sure To Delete This ?'))"
-                                                            class="btn btn-sm btn-danger  waves-effect waves-light">
+                                                        <a type="button" title="Cancel"
+                                                            href ="{{ url('odrcancel', $odrs->id) }}"
+                                                            class="btn btn-sm btn-danger  waves-effect waves-light"
+                                                            onclick="return(confirm('Are You Sure To Cancel This ?'))">
                                                             <i class="fa fa-trash"></i>
                                                         </a>
 
@@ -199,9 +142,8 @@
 
 
                                             </tr>
-                                            <?php
-                                            $total = $total + $cart->unit_price;
-                                            ?>
+                                        }
+                                        @endif
                                         @endforeach
                                     @endif
                                 @endif
@@ -209,19 +151,6 @@
                             </tbody>
 
                         </table>
-                        <br><br>
-                        <div class="d-flex flex-row-reverse">
-
-                            <div class="card "
-                                style="width: 120px; padding-left:30px; padding-top:20px; padding-bottom:20px; margin-right:20px">
-                                <h1 class="card-title">Total (Rs) : </h1> {{ $total }}
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-row-reverse">
-                            <a type="button" href="{{ url('proceedAdmin') }}" class="btn btn-success"
-                                style="background-color:#198754; margin-right:20px; margin-top:20px">Proceed</a>
-                        </div>
 
                     </div>
                 </div>

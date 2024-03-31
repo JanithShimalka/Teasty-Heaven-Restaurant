@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Employee;
 use App\Models\Menu;
 use App\Models\Inventory;
 use App\Models\Supplier;
 use App\Models\reservation;
+use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -86,9 +89,11 @@ class AdminController extends Controller
 
     }
     public function invoice(){
-        
+        $user_id = Auth::user()->id;
+        $crt = Cart::where('user_id',$user_id)->get();
+        $menu = Menu::all();
 
-        return view('admin.invoiceview');
+        return view('admin.invoiceview',['crt' => $crt,'menu' => $menu]);
 
     }
     
@@ -96,6 +101,12 @@ class AdminController extends Controller
         
         $inv = Inventory::all();
         return view('admin.invmng',['inv' => $inv]);
+
+    }
+    public function orders(){
+        
+        $odrs = Order::all();
+        return view('admin.order',['odrs' => $odrs]);
 
     }
     public function addsup(){
@@ -118,9 +129,23 @@ class AdminController extends Controller
         return redirect()->back();
 
     }
+    public function odrappove($id){
+        $data = Order::find($id);
+        $data->status = 'Apprroved';
+        $data-> save();
+        return redirect()->back();
+
+    }
 
     public function canceled($id){
         $data = reservation::find($id);
+        $data->status = 'Canceled';
+        $data-> save();
+        return redirect()->back();
+
+    }
+    public function odrcancel($id){
+        $data = Order::find($id);
         $data->status = 'Canceled';
         $data-> save();
         return redirect()->back();

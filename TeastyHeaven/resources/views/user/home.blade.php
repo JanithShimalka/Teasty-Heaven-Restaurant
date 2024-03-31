@@ -77,6 +77,11 @@
                             </div>
                         </div>
                         <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a>
+                        @if (Route::has('login'))
+                            @auth
+                                <a href="{{ url('cart') }}" class="nav-item nav-link">Cart</a>
+                            @endauth
+                        @endif
 
                     </div>
                     @if (Route::has('login'))

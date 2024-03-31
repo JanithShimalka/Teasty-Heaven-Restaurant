@@ -17,7 +17,7 @@
       <!-- partial -->
       @include('admin.navbar')
         <!-- partial -->
-        @include('admin.invoice')
+        
     <!-- container-scroller -->
    @include('admin.js');
   </body>
